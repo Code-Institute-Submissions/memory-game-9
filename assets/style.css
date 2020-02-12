@@ -45,7 +45,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     background-color: white;
-    border: 2px solid orange;
+    border: 2px solid rgb(146, 146, 146);
     position: absolute;
     backface-visibility: hidden;
 }
