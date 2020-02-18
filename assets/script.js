@@ -6,6 +6,8 @@ let hasFlippedCard = false;
  */
 let lockBoard = false;
 let firstCard, secondCard;
+let countdown = null;
+const timerDisplay = document.querySelector('.timer');
 
 /**
  * adds flip on click
@@ -23,7 +25,7 @@ function flipCard() {
         // first click
         hasFlippedCard = true;
         firstCard = this;
-
+        timer(120);
         return;
     }
     // second click
@@ -88,6 +90,32 @@ function resetBoard() {
         card.style.order = randomPos;
     });
 })();
+
+function timer(seconds) {
+    const now = Date.now();
+    const then = now + seconds * 1000;
+    // displayTimeLeft(seconds);
+
+    if (countdown === null) {
+        countdown = setInterval(() => {
+            const secondsLeft = Math.round((then - Date.now()) / 1000);
+            if (secondsLeft < 0) {
+                clearInterval(countdown);
+                countdown = null;
+                // find a way to stop the timer when all cards match
+                return;
+            }
+            displayTimeLeft(secondsLeft);
+        }, 1000);
+    }
+}
+
+function displayTimeLeft(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainderSeconds = seconds % 60;
+    const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+    timerDisplay.textContent = display;
+}
 
 /**
  * adds flipcard class on click
