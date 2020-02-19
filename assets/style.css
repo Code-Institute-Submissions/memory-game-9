@@ -54,6 +54,7 @@ body {
     transform: rotateX(180deg);
 }
 
+.title,
 .timer {
-    color: rgb(123, 123, 250);
+    color: rgb(212, 212, 212);
 }
